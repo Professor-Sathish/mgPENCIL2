@@ -12,16 +12,24 @@ def preprocess_text(text):
     stop_words = set(stopwords.words("english"))
     filtered_words = [word.lower() for word in words if word.lower() not in stop_words]
     return " ".join(filtered_words)
-
 # Read sentences from CSV or plain text file
-def read_sentences(file_path):
+'def read_sentences(uploaded_file):
+    if uploaded_file.name.endswith(".csv"):
+        df = pd.read_csv(uploaded_file)
+        # Replace 'your_column_name' with the actual column name in your CSV file.
+        sentences = df['challenges'].tolist()  # Replace 'your_column_name'
+    else:
+        sentences = uploaded_file.getvalue().decode('utf-8').splitlines()
+    return sentences
+# Read sentences from CSV or plain text file
+'''def read_sentences(file_path):
     if file_path.endswith(".csv"):
         df = pd.read_csv(file_path, header=None)
         sentences = df.iloc[:, 0].tolist()
     else:
         with open(file_path, "r") as file:
             sentences = file.readlines()
-    return sentences
+    return sentences'''
 
 # Generate theme names based on topic embeddings
 def generate_theme_names(embeddings, num_topics=5):
