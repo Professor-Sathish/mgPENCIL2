@@ -13,7 +13,7 @@ def preprocess_text(text):
     filtered_words = [word.lower() for word in words if word.lower() not in stop_words]
     return " ".join(filtered_words)
 # Read sentences from CSV or plain text file
-'def read_sentences(uploaded_file):
+def read_sentences(uploaded_file):
     if uploaded_file.name.endswith(".csv"):
         df = pd.read_csv(uploaded_file)
         # Replace 'your_column_name' with the actual column name in your CSV file.
